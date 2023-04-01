@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<string name="app_name">firebase_ui_auth</string>
+<string name="facebook_app_id">244608231331855</string>
+<string name="fb_login_protocol_scheme">fb00578bd7d4253f40b8ffe18862f7d9f8</string>
+
+</resources>

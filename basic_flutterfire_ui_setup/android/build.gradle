@@ -1,0 +1,37 @@
+buildscript {
+    ext.kotlin_version = '1.6.10'
+    repositories {
+        google()
+        mavenCentral()
+        mavenCentral() 
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.1.2'
+        // START: FlutterFire Configuration
+        classpath 'com.google.gms:google-services:4.3.10'
+        // END: FlutterFire Configuration
+        // implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        mavenCentral() 
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(':app')
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
