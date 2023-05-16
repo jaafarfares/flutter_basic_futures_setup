@@ -1,7 +1,5 @@
 # geolocator_setup
 
-
-
 ## Test App 
 
 
@@ -18,5 +16,4 @@ In the build() method, when the "location" button is pressed, it awaits the resu
 Overall, the geolocator package enables the Flutter application to access the device's location by checking and requesting permissions, and retrieving latitude and longitude coordinates.
 
 
-### Made by [Jaafar Fares](https://github.com/jaafarfares) for [Holberton School](https://www.holbertonschool.com/)
-
+### Made by [Jaafar Fares](https://github.com/jaafarfares)
