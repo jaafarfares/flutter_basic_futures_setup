@@ -36,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // get the user latitude and longitude
 
-  Future<Position> _getGeoLocationPosition() async {
+  Future<Position> getposition() async {
     bool servicessaccess;
     LocationPermission permission;
     servicessaccess = await Geolocator.isLocationServiceEnabled();
@@ -105,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }*/
 
   // get the user adress using latitude and longitude
-  Future<void> GetAddressFromLatLong(Position position) async {
+  Future<void> getuseradress(Position position) async {
     List<Placemark> fulladress =
         await placemarkFromCoordinates(position.latitude, position.longitude);
     Placemark place = fulladress[0];
@@ -155,10 +155,10 @@ class _MyHomePageState extends State<MyHomePage> {
             const Spacer(),
             ElevatedButton(
                 onPressed: () async {
-                  Position position = await _getGeoLocationPosition();
+                  Position position = await getposition();
                   location =
                       'latitude: ${position.latitude} , longitude: ${position.longitude}';
-                  GetAddressFromLatLong(position);
+                  getuseradress(position);
                 },
                 child: Text('Get Location')),
             const Spacer(),
