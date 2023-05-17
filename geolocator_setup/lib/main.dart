@@ -34,6 +34,8 @@ class _MyHomePageState extends State<MyHomePage> {
   String location = 'Press the Button to get your location';
   String Address = '';
 
+  // get the user latitude and longitude
+
   Future<Position> _getGeoLocationPosition() async {
     bool servicessaccess;
     LocationPermission permission;
@@ -101,6 +103,8 @@ class _MyHomePageState extends State<MyHomePage> {
     getposition();
     super.initState();
   }*/
+
+  // get the user adress using latitude and longitude
   Future<void> GetAddressFromLatLong(Position position) async {
     List<Placemark> fulladress =
         await placemarkFromCoordinates(position.latitude, position.longitude);
