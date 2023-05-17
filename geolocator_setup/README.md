@@ -1,19 +1,26 @@
-# geolocator_setup
-
-## Test App 
 
 
-The geolocator package in this Flutter code is used to retrieve the device's current location. It provides functions to check if location services are enabled, request location permission, and obtain the device's latitude and longitude coordinates.
 
-The getposition() function first checks if location services are enabled by calling Geolocator.isLocationServiceEnabled(). If the services are disabled, an AwesomeDialog is displayed to notify the user.
+##### a small test app that utilizes the Flutter Geolocator and Geocoding packages to obtain the user's current location when they press a button located in the center of the page.
 
-Next, it checks the location permission status using Geolocator.checkPermission(). If the permission is denied, it requests permission by calling Geolocator.requestPermission(). If the permission is granted, it calls the getlongatti() function, which uses Geolocator.getCurrentPosition() to retrieve the current position as a Position object.
+#####  The app consists of a single screen with a centered button. When the user taps the button, the app triggers the geolocation functionality and displays the user's current location in terms of latitude, longitude, and address.
 
-The getlongatti() function is an asynchronous function that returns a Future<Position>. It uses Geolocator.getCurrentPosition() to obtain the device's latitude and longitude coordinates.
 
-In the build() method, when the "location" button is pressed, it awaits the result of the getlongatti() function and assigns the position to the correntlocation variable. The latitude and longitude values are then printed to the console.
 
-Overall, the geolocator package enables the Flutter application to access the device's location by checking and requesting permissions, and retrieving latitude and longitude coordinates.
+
+
+# geolocator package
+
+The Flutter Geolocator package is a plugin that provides geolocation capabilities to Flutter applications. It allows you to retrieve the current device location, monitor location updates, and obtain various information related to the device's location.
+
+
+# geocoding package
+
+
+Flutter Geocoding package is a plugin that provides geocoding and reverse geocoding capabilities to Flutter applications. Geocoding is the process of converting addresses (such as street names) into geographic coordinates (latitude and longitude), while reverse geocoding involves converting geographic coordinates into human-readable addresses.
+
+The Flutter Geocoding package allows you to perform these operations using various geocoding providers, such as Google Maps, MapQuest, and OpenCage. By integrating this package into your Flutter app, you can easily retrieve location information and work with geospatial data.
+
 
 
 ### Made by [Jaafar Fares](https://github.com/jaafarfares)
