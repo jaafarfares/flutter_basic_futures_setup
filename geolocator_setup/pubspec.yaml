@@ -38,6 +38,8 @@ dependencies:
   geolocator: ^9.0.2
   awesome_dialog: ^3.0.2
   geocoding: ^2.1.0
+  intl: ^0.18.1
+  iconsax: ^0.0.8
 
 dev_dependencies:
   flutter_test:
