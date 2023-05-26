@@ -9,6 +9,7 @@ The project includes the following components:
 * Repositories: The JokeRepository defines the contract for retrieving joke data. In this project, it is implemented by the JokesApi class, which uses the Dio package to make HTTP requests to an external API and retrieve jokes.
 * Screens: The HomePage serves as the main screen of the application. It includes two buttons: the "press the button to get one joke " button fetches a random joke from the repository every time the user clicks it, while the "Get a List of jokes" button fetches a list of new jokes from the repository every time the user clicks it. The jokes are displayed using popup dialogs.
 * Popups: The JokePopUp is a dialog that displays a joke fetched from the repository using the JokeViewModel. It includes an exit button to close the dialog, also The JokesLIts is a dialog that displays a list of jokes fetched from the repository using the JokeViewModel. It includes an exit button to close the dialog.
+
 The project demonstrates the flow of data between the Model, ViewModel, and View using asynchronous operations and the FutureBuilder widget for handling asynchronous data retrieval. It also showcases the use of dependency injection to provide dependencies to the ViewModel and repository.
 
 Overall, the "Basic MVVM Setup" project serves as a starting point for understanding and implementing the MVVM pattern in Flutter applications, showcasing the separation of concerns, efficient management of data flow.
