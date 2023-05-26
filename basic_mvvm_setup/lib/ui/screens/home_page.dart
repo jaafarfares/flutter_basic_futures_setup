@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: ElevatedButton(
             child: Text(homemodel.pagebody),
             onPressed: () {
-              joke.fetchjokes();
+             // joke.fetchjokes();
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const JokePopUp()),

@@ -1,14 +1,11 @@
+import 'package:basic_mvvm_setup/models/joke_model.dart';
 import 'package:basic_mvvm_setup/repositories/jokes/joke_repositories.dart';
 import 'package:basic_mvvm_setup/repositories/jokes/jokes_api.dart';
 import 'package:dio/dio.dart';
 
 class JokeViewModel {
-/*   JokeRepository? jokeRepository;
-
-  JokeViewModel({this.jokeRepository}); */
-
-  fetchjokes() async {
-    JokesApi().getjoke();
+  Future<JokeModel?> fetchjokes() async {
+    return JokesApi().getjoke();
   }
 }
 /* class JokeViewModel {
