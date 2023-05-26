@@ -24,7 +24,7 @@ class JokePopUp extends StatelessWidget {
             color: Colors.white,
           ),
           child: FutureBuilder<JokeModel?>(
-            future: jokeViewModel.fetchjokes(),
+            future: jokeViewModel.fetchjoke(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(

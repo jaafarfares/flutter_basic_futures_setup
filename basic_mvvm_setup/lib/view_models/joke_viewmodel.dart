@@ -4,8 +4,12 @@ import 'package:basic_mvvm_setup/repositories/jokes/jokes_api.dart';
 import 'package:dio/dio.dart';
 
 class JokeViewModel {
-  Future<JokeModel?> fetchjokes() async {
+  Future<JokeModel?> fetchjoke() async {
     return JokesApi().getjoke();
+  }
+
+  Future<List<JokeModel>> fetchjokes() async {
+    return JokesApi().getjokes();
   }
 }
 /* class JokeViewModel {

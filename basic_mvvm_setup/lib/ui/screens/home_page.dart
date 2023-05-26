@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:basic_mvvm_setup/ui/screens/jokes_list.dart';
 import 'package:basic_mvvm_setup/view_models/home_page_viewmodel.dart';
 import 'package:basic_mvvm_setup/view_models/joke_viewmodel.dart';
 import 'package:basic_mvvm_setup/ui/screens/joke_popup.dart';
@@ -28,16 +29,31 @@ class _MyHomePageState extends State<MyHomePage> {
           centerTitle: true,
         ),
         body: Center(
-          child: ElevatedButton(
-            child: Text(homemodel.pagebody),
-            onPressed: () {
-             // joke.fetchjokes();
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const JokePopUp()),
-              );
-            },
-          ),
+          child: Column(children: [
+            Spacer(),
+            ElevatedButton(
+              child: Text(homemodel.first),
+              onPressed: () {
+                joke.fetchjoke();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const JokePopUp()),
+                );
+              },
+            ),
+            Spacer(),
+            ElevatedButton(
+              child: Text(homemodel.second),
+              onPressed: () {
+                joke.fetchjokes();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const JokesList()),
+                );
+              },
+            ),
+            Spacer(),
+          ]),
         ));
   }
 }

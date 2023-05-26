@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 class JokesApi extends JokeRepository {
   @override
   Future<JokeModel> getjoke() async {
-    JokeModel joke = JokeModel(); // Empty JokeModel object as default value
+    JokeModel joke = JokeModel();
     try {
       var response =
           await Dio().get('https://official-joke-api.appspot.com/random_joke');
@@ -14,11 +14,26 @@ class JokesApi extends JokeRepository {
     } catch (e) {
       print(e);
     }
-    print('/*************///');
-
-    print(joke);
-    print('/*************///');
 
     return joke;
+  }
+
+  @override
+  Future<List<JokeModel>> getjokes() async {
+    List<JokeModel> jokes = [];
+    try {
+      var response =
+          await Dio().get('https://official-joke-api.appspot.com/random_ten');
+      var jsonData = response.data as List;
+      jokes = jsonData.map((joke) => JokeModel.fromJson(joke)).toList();
+    } catch (e) {
+      print(e);
+    }
+    print('/*************///');
+
+    print(jokes);
+    print('/*************///');
+
+    return jokes;
   }
 }

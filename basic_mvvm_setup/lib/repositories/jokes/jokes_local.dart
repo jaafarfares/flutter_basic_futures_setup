@@ -7,5 +7,10 @@ class JokesLocal extends JokeRepository{
     // TODO: implement getjoke
     throw UnimplementedError();
   }
+    @override
+  Future<List<JokeModel>> getjokes() {
+    // TODO: implement getjoke
+    throw UnimplementedError();
+  }
   
 }
