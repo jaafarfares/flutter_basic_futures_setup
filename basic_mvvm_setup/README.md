@@ -13,3 +13,5 @@ The project includes the following components:
 The project demonstrates the flow of data between the Model, ViewModel, and View using asynchronous operations and the FutureBuilder widget for handling asynchronous data retrieval. It also showcases the use of dependency injection to provide dependencies to the ViewModel and repository.
 
 Overall, the "Basic MVVM Setup" project serves as a starting point for understanding and implementing the MVVM pattern in Flutter applications, showcasing the separation of concerns, efficient management of data flow.
+
+### Made by [Jaafar Fares](https://github.com/jaafarfares)
