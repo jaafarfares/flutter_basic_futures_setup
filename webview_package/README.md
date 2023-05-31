@@ -10,8 +10,8 @@
 
 ##### The app features a login screen with four buttons: 
 
-* Google, 
-* YouTube, 
+* Google
+* YouTube
 * Facebook
 * Instagram
 

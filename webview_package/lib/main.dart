@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'WebView Example',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
       home: WebViewScreen(),
     );
@@ -34,66 +34,107 @@ class _WebViewScreenState extends State<WebViewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Web- View Example'),
+        title: const Text('Web- View Example'),
         centerTitle: true,
       ),
       body: Center(
         child: Column(children: [
-          Spacer(),
-          TextButton(
-              style: const ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll<Color>(Colors.amber),
+          const Spacer(),
+          Row(
+            children: [
+              const Spacer(),
+              SizedBox(
+                width: 160,
+                height: 130,
+                child: TextButton(
+                    style: const ButtonStyle(
+                      backgroundColor:
+                          MaterialStatePropertyAll<Color>(Colors.amber),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const Google()),
+                      );
+                    },
+                    child: Ink.image(
+                        fit: BoxFit.fill,
+                        image: const NetworkImage(
+                            'https://media.wired.co.uk/photos/606da4ae938ecee6e930e9c3/master/w_1600%2Cc_limit/google-logo_2.jpg'))),
               ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Google()),
-                );
-              },
-              child: Text('Google', style: TextStyle(color: Colors.white))),
-          Spacer(),
-          TextButton(
-              style: const ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll<Color>(Colors.red),
+              const Spacer(),
+              SizedBox(
+                width: 160,
+                height: 130,
+                child: TextButton(
+                    style: const ButtonStyle(
+                      backgroundColor:
+                          MaterialStatePropertyAll<Color>(Colors.red),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Youtube()),
+                      );
+                    },
+                    child: Ink.image(
+                        fit: BoxFit.fill,
+                        image: const NetworkImage(
+                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf5ZQkwSF6Wmb-iRrggVSqQETo1Dfm5LmZng&usqp=CAU'))),
               ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Youtube()),
-                );
-              },
-              child: Text(
-                'Youtube',
-                style: TextStyle(color: Colors.white),
-              )),
-          Spacer(),
-          TextButton(
-              style: const ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll<Color>(Colors.blue),
+              const Spacer(),
+            ],
+          ),
+          const Spacer(),
+          Row(
+            children: [
+              const Spacer(),
+              SizedBox(
+                width: 160,
+                height: 130,
+                child: TextButton(
+                    style: const ButtonStyle(
+                      backgroundColor:
+                          MaterialStatePropertyAll<Color>(Colors.blue),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Facebook()),
+                      );
+                    },
+                    child: Ink.image(
+                        fit: BoxFit.fill,
+                        image: const NetworkImage(
+                            'https://www.questionpro.com/blog/wp-content/uploads/2016/02/facebook-logo.jpg'))),
               ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Facebook()),
-                );
-              },
-              child: Text('Facebook', style: TextStyle(color: Colors.white))),
-          Spacer(),
-          TextButton(
-              style: const ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll<Color>(Colors.pink),
+              const Spacer(),
+              SizedBox(
+                width: 160,
+                height: 130,
+                child: ElevatedButton(
+                    style: const ButtonStyle(
+                      backgroundColor:
+                          MaterialStatePropertyAll<Color>(Colors.pink),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Instagram()),
+                      );
+                    },
+                    child: Ink.image(
+                        fit: BoxFit.contain,
+                        image: const NetworkImage(
+                            'https://cdn.siasat.com/wp-content/uploads/2020/04/Instagram-.jpg'))),
               ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Instagram()),
-                );
-              },
-              child: Text(
-                'Instagram',
-                style: TextStyle(color: Colors.white),
-              )),
-          Spacer(),
+              const Spacer(),
+            ],
+          ),
+          const Spacer(),
         ]),
       ),
     );
