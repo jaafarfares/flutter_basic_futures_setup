@@ -1,0 +1,17 @@
+flavors:
+  apple:
+    app:
+      name: "flutter_flavorizr_setupapple"
+
+    android:
+      applicationId: "com.example.flutter_flavorizr_setup"
+
+    ios: null
+
+  banana:
+    app:
+      name: "flutter_flavorizr_setupbanana"
+
+    android:
+      applicationId: "com.example.flutter_flavorizr_setup"
+    ios: null
