@@ -11,243 +11,253 @@ class CalendarScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final CalendarController calendarController = Get.put(CalendarController());
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/shcoll_bg.png"),
-              fit: BoxFit.cover,
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/shcoll_bg.png"),
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              Obx(
-                () => TableCalendar(
-                  rangeSelectionMode: RangeSelectionMode.toggledOn,
-                  daysOfWeekHeight: 50,
-                  headerStyle: const HeaderStyle(
-                    formatButtonVisible: false,
-                    titleCentered: true,
-                  ),
-                  calendarStyle: CalendarStyle(
-                    markersMaxCount: 1,
-                    markersAlignment: Alignment.bottomRight,
-                    markerMargin:
-                        const EdgeInsets.only(top: 6, right: 20, left: 20),
-                    markerDecoration: const BoxDecoration(
-                      color: Colors.red,
-                      shape: BoxShape.circle,
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                Obx(
+                  () => TableCalendar(
+                    rangeSelectionMode: RangeSelectionMode.toggledOn,
+                    daysOfWeekHeight: 50,
+                    headerStyle: HeaderStyle(
+                      //leftChevronIcon: const Icon(Icons.arrow_back),
+                      titleTextFormatter: (date, locale) =>
+                          DateFormat.MMMM(locale).format(date),
+                      titleTextStyle: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      formatButtonVisible: false,
+                      titleCentered: true,
                     ),
-                    cellMargin: const EdgeInsets.all(2),
-                    cellPadding: const EdgeInsets.all(1),
-                    cellAlignment: Alignment.center,
-                    selectedDecoration: BoxDecoration(
-                      color: Colors.blue,
-                      shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(20),
+                    calendarStyle: CalendarStyle(
+                      markersMaxCount: 1,
+                      markersAlignment: Alignment.bottomRight,
+                      markerMargin:
+                          const EdgeInsets.only(top: 6, right: 20, left: 20),
+                      markerDecoration: const BoxDecoration(
+                        color: Colors.red,
+                        shape: BoxShape.circle,
+                      ),
+                      cellMargin: const EdgeInsets.all(2),
+                      cellPadding: const EdgeInsets.all(1),
+                      cellAlignment: Alignment.center,
+                      selectedDecoration: BoxDecoration(
+                        color: Colors.blue,
+                        shape: BoxShape.rectangle,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      defaultDecoration: const BoxDecoration(
+                        shape: BoxShape.rectangle,
+                      ),
+                      weekendDecoration: const BoxDecoration(
+                        shape: BoxShape.rectangle,
+                      ),
+                      holidayDecoration: const BoxDecoration(
+                        shape: BoxShape.rectangle,
+                      ),
+                      outsideDecoration: const BoxDecoration(
+                        shape: BoxShape.rectangle,
+                      ),
+                      rangeStartDecoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        color: Colors.white70,
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      rangeEndDecoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        color: Colors.white70,
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      rangeHighlightColor: Colors.red,
+                      todayDecoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        shape: BoxShape.rectangle,
+                        color: Colors.blue.withOpacity(0.2),
+                      ),
+                      selectedTextStyle: const TextStyle(color: Colors.white),
+                      todayTextStyle: const TextStyle(color: Colors.black),
                     ),
-                    defaultDecoration: const BoxDecoration(
-                      shape: BoxShape.rectangle,
-                    ),
-                    weekendDecoration: const BoxDecoration(
-                      shape: BoxShape.rectangle,
-                    ),
-                    holidayDecoration: const BoxDecoration(
-                      shape: BoxShape.rectangle,
-                    ),
-                    outsideDecoration: const BoxDecoration(
-                      shape: BoxShape.rectangle,
-                    ),
-                    rangeStartDecoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      color: Colors.white70,
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    rangeEndDecoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      color: Colors.white70,
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    rangeHighlightColor: Colors.red,
-                    todayDecoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      shape: BoxShape.rectangle,
-                      color: Colors.blue.withOpacity(0.2),
-                    ),
-                    selectedTextStyle: const TextStyle(color: Colors.white),
-                    todayTextStyle: const TextStyle(color: Colors.black),
-                  ),
-                  startingDayOfWeek: StartingDayOfWeek.monday,
-                  daysOfWeekVisible: false,
-                  firstDay: DateTime.utc(2021, 1, 1),
-                  lastDay: DateTime.utc(2025, 12, 31),
-                  focusedDay: calendarController.today.value,
-                  selectedDayPredicate: (DateTime day) {
-                    return isSameDay(calendarController.today.value, day);
-                  },
-                  rowHeight: 90,
-                  calendarFormat: CalendarFormat.week,
-                  onDaySelected: calendarController.onDaySelected,
-                  availableGestures: AvailableGestures.horizontalSwipe,
-                  eventLoader: (DateTime day) {
-                    return calendarController.getEventsForDay(day);
-                  },
-                  calendarBuilders: CalendarBuilders(
-                    rangeEndBuilder: (context, day, focusedDay) {
-                      return Container(
-                        height: 90,
-                        width: 120,
-                        margin: const EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          color: Colors.blue,
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              '${day.day}',
+                    startingDayOfWeek: StartingDayOfWeek.monday,
+                    daysOfWeekVisible: false,
+                    firstDay: DateTime.utc(2021, 1, 1),
+                    lastDay: DateTime.utc(2025, 12, 31),
+                    focusedDay: calendarController.today.value,
+                    selectedDayPredicate: (DateTime day) {
+                      return isSameDay(calendarController.today.value, day);
+                    },
+                    rowHeight: 90,
+                    calendarFormat: CalendarFormat.week,
+                    onDaySelected: calendarController.onDaySelected,
+                    availableGestures: AvailableGestures.horizontalSwipe,
+                    eventLoader: (DateTime day) {
+                      return calendarController.getEventsForDay(day);
+                    },
+                    calendarBuilders: CalendarBuilders(
+                      rangeEndBuilder: (context, day, focusedDay) {
+                        return Container(
+                          height: 90,
+                          width: 120,
+                          margin: const EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16),
+                            color: Colors.blue,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                '${day.day}',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                DateFormat.E().format(day),
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                      weekNumberBuilder: (context, weekNumber) {
+                        return Container(
+                          margin: const EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16),
+                            color: Colors.blue,
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Week $weekNumber',
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                               ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              DateFormat.E().format(day),
-                              style: const TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                    weekNumberBuilder: (context, weekNumber) {
-                      return Container(
-                        margin: const EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          color: Colors.blue,
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Week $weekNumber',
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                        ),
-                      );
-                    },
-                    selectedBuilder: (context, day, focusedDay) {
-                      return Container(
-                        height: 90,
-                        width: 120,
-                        margin: const EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          color: Colors.blue,
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              '${day.day}',
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
+                        );
+                      },
+                      selectedBuilder: (context, day, focusedDay) {
+                        return Container(
+                          height: 90,
+                          width: 120,
+                          margin: const EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16),
+                            color: Colors.blue,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                '${day.day}',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              DateFormat.E().format(day),
-                              style: const TextStyle(
-                                color: Colors.white,
+                              const SizedBox(height: 4),
+                              Text(
+                                DateFormat.E().format(day),
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                    todayBuilder: (context, day, focusedDay) {
-                      return Container(
-                        height: 90,
-                        width: 120,
-                        margin: const EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          color: Colors.blue.withOpacity(0.2),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              '${day.day}',
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
+                            ],
+                          ),
+                        );
+                      },
+                      todayBuilder: (context, day, focusedDay) {
+                        return Container(
+                          height: 90,
+                          width: 120,
+                          margin: const EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16),
+                            color: Colors.blue.withOpacity(0.2),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                '${day.day}',
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              DateFormat.E().format(day),
-                              style: const TextStyle(
-                                color: Colors.black,
+                              const SizedBox(height: 4),
+                              Text(
+                                DateFormat.E().format(day),
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                    defaultBuilder: (context, date, focusedDay) {
-                      final isToday =
-                          isSameDay(calendarController.today.value, date);
-                      final isSelectedDay =
-                          isSameDay(calendarController.today.value, date);
+                            ],
+                          ),
+                        );
+                      },
+                      defaultBuilder: (context, date, focusedDay) {
+                        final isToday =
+                            isSameDay(calendarController.today.value, date);
+                        final isSelectedDay =
+                            isSameDay(calendarController.today.value, date);
 
-                      return Container(
-                        height: 90,
-                        width: 120,
-                        margin: const EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          color: isSelectedDay ? Colors.blue : Colors.white70,
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              '${date.day}',
-                              style: TextStyle(
-                                color: isToday && !isSelectedDay
-                                    ? Colors.red
-                                    : Colors.black,
-                                fontWeight: FontWeight.bold,
+                        return Container(
+                          height: 90,
+                          width: 120,
+                          margin: const EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16),
+                            color: isSelectedDay ? Colors.blue : Colors.white70,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                '${date.day}',
+                                style: TextStyle(
+                                  color: isToday && !isSelectedDay
+                                      ? Colors.red
+                                      : Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              DateFormat.E().format(date),
-                              style: TextStyle(
-                                color: isToday && !isSelectedDay
-                                    ? Colors.red
-                                    : Colors.black,
+                              const SizedBox(height: 4),
+                              Text(
+                                DateFormat.E().format(date),
+                                style: TextStyle(
+                                  color: isToday && !isSelectedDay
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
+                            ],
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 30),
-              EventsListWithTimeline(),
-            ],
+                const SizedBox(height: 30),
+                EventsListWithTimeline(),
+              ],
+            ),
           ),
         ),
       ),
@@ -280,7 +290,10 @@ class EventsListWithTimeline extends StatelessWidget {
                           height: 60,
                           alignment: Alignment.topCenter,
                           padding: const EdgeInsets.only(right: 10),
-                          child: Text('${hour.toString().padLeft(2, '0')}:00'),
+                          child: Text(
+                            '${hour.toString().padLeft(2, '0')}:00',
+                            style: TextStyle(color: Colors.black38),
+                          ),
                         ),
                       ],
                     );
@@ -317,38 +330,40 @@ class EventsListWithTimeline extends StatelessWidget {
                     final endHour = int.parse(endTimeParts[0]);
                     final endMinute = int.parse(endTimeParts[1]);
 
-                    final eventStartTime =
-                        DateTime(currentTime.year, currentTime.month,
-                            currentTime.day, startHour, startMinute);
-                    final eventEndTime =
-                        DateTime(currentTime.year, currentTime.month,
-                            currentTime.day, endHour, endMinute);
+                    final eventStartTime = DateTime(
+                        currentTime.year,
+                        currentTime.month,
+                        currentTime.day,
+                        startHour,
+                        startMinute);
+                    final eventEndTime = DateTime(currentTime.year,
+                        currentTime.month, currentTime.day, endHour, endMinute);
 
-                    Color eventColor = Colors.orange; 
+                    Color eventColor = Colors.orange;
 
                     // Determine event color based on timing
                     if (currentTime.isAfter(eventEndTime)) {
                       // Event has already ended
-                      eventColor = Colors.green;
-                    }  else if (currentTime.isBefore(eventStartTime)) {
-  // Calculate the difference in minutes between currentTime and eventStartTime
-  final differenceInMinutes = eventStartTime.difference(currentTime).inMinutes;
+                      eventColor = Color.fromRGBO(157, 208, 250, 1);
+                    } else if (currentTime.isBefore(eventStartTime)) {
+                      // Calculate the difference in minutes between currentTime and eventStartTime
+                      final differenceInMinutes =
+                          eventStartTime.difference(currentTime).inMinutes;
 
-  // Check if the difference is less than 60 minutes
-  if (differenceInMinutes <= 60) {
-    eventColor = Colors.red;
-  }
-} else if (currentTime.isAfter(eventStartTime) &&
+                      // Check if the difference is less than 60 minutes
+                      if (differenceInMinutes <= 60) {
+                        eventColor = Colors.red;
+                      }
+                    } else if (currentTime.isAfter(eventStartTime) &&
                         currentTime.isBefore(eventEndTime)) {
                       // Event is ongoing
-                      eventColor = Colors.red;
+                      eventColor = Color.fromRGBO(157, 208, 250, 1);
                     }
 
                     final topPosition =
                         ((startHour - 8) * 60) + startMinute.toDouble();
-                    final eventHeight =
-                        ((endHour - startHour) * 60) + (endMinute - startMinute)
-                            .toDouble();
+                    final eventHeight = ((endHour - startHour) * 60) +
+                        (endMinute - startMinute).toDouble();
 
                     return Positioned(
                       top: topPosition,
@@ -356,34 +371,80 @@ class EventsListWithTimeline extends StatelessWidget {
                       right: 0,
                       height: eventHeight,
                       child: Container(
-                        margin: const EdgeInsets.only(left: 17),
-                        padding: const EdgeInsets.all(8),
+                        margin: const EdgeInsets.only(bottom: 2),
+                        padding: const EdgeInsets.only(left:15, right: 15),
                         decoration: BoxDecoration(
                           color: eventColor.withOpacity(0.8),
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(12),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                           Row(children: [ Text(
-                              event.title,
-                              style: const TextStyle(color: Colors.white),
-                            ),
-                            Text(
-                              event.className,
-                              style: const TextStyle(color: Colors.white),
-                            ),],),
-                            const SizedBox(height: 4),
                             Row(
                               children: [
                                 Text(
-                                  event.room,
-                                  style: const TextStyle(color: Colors.white),
+                                  event.title,
+                                  style: const TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
                                 ),
                                 Spacer(),
                                 Text(
-                                  '${event.startTime} - ${event.endTime}',
-                                  style: const TextStyle(color: Colors.white),
+                                  event.className,
+                                  style: const TextStyle(color: Colors.black),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 2),
+                            Row(
+                              children: [
+                                Center(
+                                    child: Container(
+                                  // parent row
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          for (int i = 0;
+                                              i < RandomImages.length;
+                                              i++)
+                                            Align(
+                                              widthFactor: 0.5,
+                                              // parent circle avatar.
+                                              // We defined this for better UI
+                                              child: CircleAvatar(
+                                                radius: 9,
+                                                backgroundColor: Colors.white,
+                                                // Child circle avatar
+                                                child: CircleAvatar(
+                                                  radius: 9,
+                                                  backgroundImage: NetworkImage(
+                                                      RandomImages[i]),
+                                                ),
+                                              ),
+                                            )
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        width: 30,
+                                      ),
+                                      // this circle avatar we created add icon
+                                     /*  CircleAvatar(
+                                        backgroundColor: Colors.grey.shade300,
+                                        radius: 11,
+                                        child: Icon(Icons.add),
+                                      ) */
+                                    ],
+                                  ),
+                                )),
+                                Spacer(),
+                                Text('${event.room} ',
+                                  /* '${event.startTime} - ${event.endTime}', */
+                                  style: const TextStyle(color: Colors.black),
                                 ),
                               ],
                             ),
@@ -400,6 +461,13 @@ class EventsListWithTimeline extends StatelessWidget {
       ],
     );
   }
+
+  List RandomImages = [
+   // 'https://images.unsplash.com/photo-1597223557154-721c1cecc4b0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aHVtYW4lMjBmYWNlfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+    'https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg',
+    'https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8ZmFjZXxlbnwwfHwwfHw%3D&w=1000&q=80',
+    'https://i0.wp.com/post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/03/GettyImages-1092658864_hero-1024x575.jpg?w=1155&h=1528'
+  ];
 }
 
 class TimelinePainter extends CustomPainter {
@@ -410,8 +478,8 @@ class TimelinePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.grey
-      ..strokeWidth = 2;
+      ..color = Colors.white38
+      ..strokeWidth = 4;
 
     final redDotPaint = Paint()
       ..color = Colors.red
@@ -428,7 +496,7 @@ class TimelinePainter extends CustomPainter {
     // Draw circles/knots for each hour
     for (int i = 0; i <= 10; i++) {
       final knotY = (i * 60).toDouble() + topPadding;
-      canvas.drawCircle(Offset(lineX, knotY), 4, paint);
+      canvas.drawCircle(Offset(lineX, knotY), 6, paint);
     }
 
     // Calculate current time position
@@ -439,7 +507,7 @@ class TimelinePainter extends CustomPainter {
         ((currentHour - 8) * 60 + currentMinute).toDouble() + topPadding;
 
     // Draw red dot at the current time position
-    canvas.drawCircle(Offset(lineX, currentTopPosition), 5, redDotPaint);
+    canvas.drawCircle(Offset(lineX, currentTopPosition), 6, redDotPaint);
   }
 
   @override
@@ -456,7 +524,7 @@ class CalendarController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    events[DateTime(2024, 7, 18)] = [
+    events[DateTime(2024, 7, 23)] = [
       Event(
         title: 'CPI Networking',
         startTime: '08:00',
@@ -466,19 +534,19 @@ class CalendarController extends GetxController {
       ),
       Event(
         title: 'Math Class',
-        startTime: '10:00',
+        startTime: '9:00',
         endTime: '11:00',
         className: 'math-101',
         room: 'room 5',
       ),
-        Event(
+      Event(
         title: 'History Class',
         startTime: '12:00',
         endTime: '13:00',
         className: 'math-101',
         room: 'room 5',
       ),
-        Event(
+      Event(
         title: 'sience Class',
         startTime: '14:00',
         endTime: '15:00',
@@ -486,7 +554,7 @@ class CalendarController extends GetxController {
         room: 'room 5',
       ),
     ];
-    events[DateTime(2024, 7, 19)] = [
+    events[DateTime(2024, 7, 26)] = [
       Event(
         title: 'Physics Class',
         startTime: '09:00',
